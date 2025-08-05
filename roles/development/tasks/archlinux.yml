@@ -1,0 +1,9 @@
+---
+- name: Install AUR helper
+  shell: |
+    cd /tmp
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+  become_user: "{{ user_name }}"
+  creates: /usr/bin/yay

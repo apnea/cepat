@@ -1,0 +1,19 @@
+---
+- name: Install base packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ base_packages + distro_packages }}"
+
+- name: Enable NetworkManager
+  systemd:
+    name: NetworkManager
+    enabled: yes
+    state: started
+  when: ansible_os_family == "Archlinux"
+
+- name: Configure user
+  user:
+    name: "{{ user_name }}"
+    groups: "{{ user_groups }}"
+    append: yes

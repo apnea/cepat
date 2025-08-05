@@ -1,0 +1,9 @@
+# Arch/CachyOS specific variables
+package_manager: pacman
+package_update_cmd: "pacman -Sy"
+package_install_cmd: "pacman -S --noconfirm"
+
+distro_packages:
+  - base-devel
+  - networkmanager
+  - sudo

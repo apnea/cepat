@@ -1,0 +1,20 @@
+# Common variables
+user_name: pete
+user_groups:
+  - wheel
+  - audio
+  - video
+
+# Base packages
+base_packages:
+  - git
+  - vim
+  - curl
+  - wget
+  - htop
+  - firefox
+  - neofetch
+
+# Desktop environment
+install_desktop: true
+desktop_environment: plasma

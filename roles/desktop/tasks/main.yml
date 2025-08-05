@@ -1,0 +1,4 @@
+---
+- name: Install desktop environment
+  include_tasks: "{{ ansible_os_family | lower }}.yml"
+  when: install_desktop

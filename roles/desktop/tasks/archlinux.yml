@@ -1,0 +1,13 @@
+---
+- name: Install KDE Plasma
+  package:
+    name:
+      - plasma-meta
+      - kde-applications-meta
+      - sddm
+    state: present
+
+- name: Enable SDDM
+  systemd:
+    name: sddm
+    enabled: yes
