@@ -1,2 +1,2 @@
 [blob]
-localhost ansible_connection=local
+testbox

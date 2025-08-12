@@ -23,6 +23,8 @@ for i in {1..30}; do
 done
 echo $IP
 
+exit 1
+
 if [ -z "$IP" ]; then
   echo "Failed to get IP for $TEST_VM"
   exit 1
@@ -35,7 +37,8 @@ for i in {1..30}; do
 done
 
 # Run Ansible playbook
-ansible-playbook -i "$IP," "$PLAYBOOK"
+# ansible-playbook -i "$IP," "$PLAYBOOK"
+ansible -i
 
 echo "Destroy and undefine"
 virsh destroy "$TEST_VM"
