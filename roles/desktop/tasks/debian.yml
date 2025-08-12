@@ -1,6 +1,0 @@
----
-# Placeholder for Debian desktop tasks
-- name: Install desktop environment
-  apt:
-    name: "{{ desktop_environment }}"
-    state: present
