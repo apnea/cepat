@@ -1,4 +1,4 @@
-# Debian/Ubuntu specific variables
+# Ubuntu specific variables
 package_manager: apt
 package_update_cmd: "apt update"
 package_install_cmd: "apt install -y"
