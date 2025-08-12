@@ -6,6 +6,7 @@
     mode: '0755'
 
 # Note: The GPG key needs to go into .asc not .gpg
+- name: Download Docker GPG key
   ansible.builtin.get_url:
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
