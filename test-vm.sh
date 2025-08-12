@@ -31,7 +31,7 @@ for i in {1..30}; do
   sleep 2
 done
 
-ansible-playbook -i "$IP," "$PLAYBOOK"
+ansible-playbook -i "$IP," "$PLAYBOOK" --ask-become-pass
 
 echo "Destroy and undefine"
 virsh destroy "$TEST_VM"
