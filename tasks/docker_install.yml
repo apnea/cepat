@@ -12,7 +12,8 @@
     mode: '0644'
     force: yes
 
-# Note the Jinja2 mapping for architecture as docker requires the debian style architecture name 'amd64' but Ansible provides 'x86_64'. Both names mean the same to humans. The arm stuff is not tested though.
+# Note the Jinja2 mapping for architecture as docker requires the debian style architecture name 'amd64' but Ansible provides 'x86_64'.
+# Both names mean the same to humans. The arm stuff is not tested though.
 - name: Add Docker APT repository
   ansible.builtin.apt_repository:
     repo: >-
