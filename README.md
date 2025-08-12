@@ -4,7 +4,7 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 
 ## Tasks
 
-- [x] basic ubuntu install
+- [x] basic ubuntu package installs
 - [x] factor out some distro specific vars
 - [x] libvirt support client and host
 - [x] add timing and disk usage output
@@ -13,6 +13,7 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [ ] yadm dotfiles support
 - [ ] dotfiles dependencies
 - [ ] clean up vim install, plugins, etc
+- [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
 - [ ] install vscode and assorted junk, codium and windsurf
 - [ ] claude-desktop for linux
 - [ ] mcp commander
@@ -24,11 +25,13 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 ## Usage notes
 
 To test this with local VMs using hostnames via qemu/libvirt for ssh and ansible requires:
-- install libnss-libvirt and enable dns resolution of vms under libvirt by appending libvirt to /etc/resolv.conf
-```sudo apt install libnss-libvirt
-sudo sed -i '/^hosts:/ s/$/ libvirt/' /etc/nsswitch.conf
-```
-- set hostname in client
+    1. install libnss-libvirt and enable dns resolution of vms under libvirt by appending libvirt to /etc/resolv.conf
+    ```sudo apt install libnss-libvirt
+    sudo sed -i '/^hosts:/ s/$/ libvirt/' /etc/nsswitch.conf
+    ```
+    2. set hostname in client
+You can also do all this just using ip addresses
+Usage: ./test-vm.sh
 
 ## End-state Envisioned Structure
 ```
