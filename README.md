@@ -2,7 +2,7 @@
 
 Multi-distro Linux workstation configuration using Ansible.
 
-## Structure
+## Planned Structure
 ```
 ├── site.yml              # Main playbook
 ├── inventory             # Hosts file
@@ -19,11 +19,6 @@ Multi-distro Linux workstation configuration using Ansible.
     ├── development/
     ├── desktop/
     └── dotfiles/
-```
-
-## Usage
-```bash
-./install.sh
 ```
 
 ## Supported Distributions
