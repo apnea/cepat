@@ -11,3 +11,4 @@ distro_packages:
   - gnupg
   - lsb-release
   - python3-pip
+  - qemu-system

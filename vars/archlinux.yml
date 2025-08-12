@@ -8,3 +8,4 @@ distro_packages:
   - networkmanager
   - sudo
   - python-pip
+  - qemu

@@ -25,19 +25,19 @@
       ansible.builtin.pacman:
         update_cache: yes
       when: ansible_os_family == 'Archlinux'
-  
-  tasks:
-  - name: install common packages
-    ansible.builtin.package:
-      name: "{{ item }}"
-      state: present
-    loop: "{{ common_distro_packages }}"
 
+  tasks:  
   - name: install distro specific packages
     ansible.builtin.package:
       name: "{{ item }}"
       state: present
     loop: "{{ distro_packages }}"
+
+  - name: install common packages
+    ansible.builtin.package:
+      name: "{{ item }}"
+      state: present
+    loop: "{{ common_distro_packages }}"
 
   roles:
     - base
