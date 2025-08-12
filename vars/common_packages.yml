@@ -13,10 +13,17 @@ common_distro_packages:
   - curl
   - wget
   - htop
+  - neofetch
+  - tree
+  - ripgrep
+  - jq
+  - openssh-client
+  - network-manager
 # display related
   - qtile
   - fonts-firacode
 # infrastructure and virtualization
   - qemu-guest-agent
   - ansible
-  - docker
+
+  
