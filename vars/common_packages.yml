@@ -1,8 +1,23 @@
 common_distro_packages:
+# dev
   - git
   - vim
+# shell and terminal
   - zsh
+  - tmux
+  - alacritty
+  - fish
+  - kitty
+  - parcellite
+# general utilities
   - curl
   - wget
   - htop
-  - tmux
+# display related
+  - qtile
+  - fonts-firacode
+# infrastructure and virtualization
+  - qemu
+  - qemu-guest-agent
+  - ansible
+  - docker
