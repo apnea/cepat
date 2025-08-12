@@ -26,17 +26,19 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 
 To test this with local VMs using hostnames via qemu/libvirt for ssh and ansible requires:
 
-    1. install libnss-libvirt and enable dns resolution of vms under libvirt by appending libvirt to /etc/resolv.conf
+1. install libnss-libvirt and enable dns resolution of vms under libvirt by appending libvirt to /etc/resolv.conf
+
 
 ```
     sudo apt install libnss-libvirt
     sudo sed -i '/^hosts:/ s/$/ libvirt/' /etc/nsswitch.conf
 ```
-    2. set hostname in client
 
-You can also do all this just using ip addresses
+2. set hostname in client
 
-Usage: ./test-vm.sh
+You can also do all this just using ip addresses.
+
+Usage: ./test-vm.sh will create a vm, attempt to connect to it via hostname, run the script asking for a sudo password, and then destroy the vm.
 
 ## End-state Envisioned Structure
 ```
