@@ -35,7 +35,7 @@ for i in {1..30}; do
 done
 
 # Run Ansible playbook
-# ansible-playbook -i "$IP," "$PLAYBOOK"
+ansible-playbook -i "$IP," "$PLAYBOOK"
 
 echo "Destroy and undefine"
 virsh destroy "$TEST_VM"
