@@ -7,3 +7,4 @@ distro_packages:
   - base-devel
   - networkmanager
   - sudo
+  - python-pip

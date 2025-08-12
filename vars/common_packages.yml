@@ -1,0 +1,8 @@
+common_distro_packages:
+  - git
+  - vim
+  - zsh
+  - curl
+  - wget
+  - htop
+  - tmux

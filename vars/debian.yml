@@ -10,3 +10,4 @@ distro_packages:
   - ca-certificates
   - gnupg
   - lsb-release
+  - python3-pip

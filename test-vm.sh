@@ -3,7 +3,7 @@ set -euo pipefail
 
 BASE_VM="ubuntu25.04-server-clone"
 TEST_VM="testbox"
-PLAYBOOK="playbook.yml"
+PLAYBOOK="site.yml"
 
 echo "Cloning $TEST_VM from $BASE_VM"
 # Clone from base
@@ -23,7 +23,7 @@ for i in {1..30}; do
 done
 echo $IP
 
-exit 1
+#exit 1
 
 if [ -z "$IP" ]; then
   echo "Failed to get IP for $TEST_VM"
@@ -37,8 +37,8 @@ for i in {1..30}; do
 done
 
 # Run Ansible playbook
-# ansible-playbook -i "$IP," "$PLAYBOOK"
-ansible -i
+ansible-playbook -i "$IP," "$PLAYBOOK"
+
 
 echo "Destroy and undefine"
 virsh destroy "$TEST_VM"
