@@ -1,6 +1,5 @@
 ---
 - name: Manage Docker as a non-root user
-  hosts: all
   become: true
   tasks:
     - name: Create docker group
@@ -15,7 +14,6 @@
         append: yes
 
 - name: Configure Docker to start on boot
-  hosts: all
   become: true
   tasks:
     - name: Enable docker service
