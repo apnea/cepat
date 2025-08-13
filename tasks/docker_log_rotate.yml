@@ -1,30 +1,32 @@
 ---
-- name: Configure Docker log rotation
+- name: Ensure /etc/docker directory exists
+  ansible.builtin.file:
+    path: /etc/docker
+    state: directory
+    mode: '0755'
   become: true
-  handlers:
-    - name: restart docker
-      ansible.builtin.systemd:
-        name: docker
-        state: restarted
-  block:
-    - name: Ensure /etc/docker directory exists
-      ansible.builtin.file:
-        path: /etc/docker
-        state: directory
-        mode: '0755'
 
-    - name: Configure log rotation in /etc/docker/daemon.json
-      ansible.builtin.copy:
-        content: |
-          {
-            "log-driver": "json-file",
-            "log-opts": {
-              "max-size": "10m",
-              "max-file": "3"
-            }
-          }
-        dest: /etc/docker/daemon.json
-        owner: root
-        group: root
-        mode: '0644'
-      notify: restart docker
+- name: Configure log rotation in /etc/docker/daemon.json
+  ansible.builtin.copy:
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  register: docker_config
+
+- name: Restart Docker to apply log configuration  # noqa no-handler
+  ansible.builtin.systemd:
+    name: docker
+    state: restarted
+    daemon_reload: true
+  become: true
+  when: docker_config is changed
