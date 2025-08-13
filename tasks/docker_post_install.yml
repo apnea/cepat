@@ -1,7 +1,7 @@
 ---
 - name: Manage Docker as a non-root user
   become: true
-  tasks:
+  block:
     - name: Create docker group
       ansible.builtin.group:
         name: docker
@@ -15,7 +15,7 @@
 
 - name: Configure Docker to start on boot
   become: true
-  tasks:
+  block:
     - name: Enable docker service
       ansible.builtin.systemd:
         name: docker.service

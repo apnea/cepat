@@ -1,9 +1,11 @@
 ---
 - name: Linux Workstation Setup
   hosts: all
-  #connection: local
   become: yes
-  #gather_facts: yes
+  
+  environment:
+    http_proxy: http://192.168.68.127:3128
+    https_proxy: http://192.168.68.127:3128
   
   vars_files:
     - vars/common_packages.yml
