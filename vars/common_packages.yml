@@ -26,5 +26,3 @@ common_distro_packages:
 # infrastructure and virtualization
   - qemu-guest-agent
   - ansible
-
-  

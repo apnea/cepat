@@ -1,10 +1,11 @@
 ---
 - name: Desnap Ubuntu and prevent snappification
-  hosts: all
   become: true
-  tasks:
+  block:
     - name: Get list of installed snaps
-      ansible.builtin.shell: snap list --all | tail -n +2 | awk '{print $1}'
+      ansible.builtin.shell: |
+        set -o pipefail
+        snap list --all | tail -n +2 | awk '{print $1}'
       register: installed_snaps
       changed_when: false
 
@@ -12,20 +13,21 @@
       ansible.builtin.command: snap remove --purge {{ item }}
       loop: "{{ installed_snaps.stdout_lines }}"
       when: installed_snaps.stdout_lines | length > 0
+      changed_when: true
 
     - name: Stop snapd service
       ansible.builtin.systemd:
         name: snapd
         state: stopped
-        enabled: no
-        masked: yes
+        enabled: false
+        masked: true
 
     - name: Purge snapd package
       ansible.builtin.apt:
         name: snapd
         state: absent
-        purge: yes
-        autoremove: yes
+        purge: true
+        autoremove: true
 
     - name: Hold snapd package to prevent reinstallation
       ansible.builtin.dpkg_selections:

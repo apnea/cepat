@@ -11,7 +11,7 @@
       ansible.builtin.user:
         name: "{{ ansible_user }}"
         groups: docker
-        append: yes
+        append: true
 
 - name: Configure Docker to start on boot
   become: true
@@ -19,9 +19,9 @@
     - name: Enable docker service
       ansible.builtin.systemd:
         name: docker.service
-        enabled: yes
+        enabled: true
 
     - name: Enable containerd service
       ansible.builtin.systemd:
         name: containerd.service
-        enabled: yes
+        enabled: true

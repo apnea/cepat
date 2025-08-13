@@ -13,7 +13,7 @@
     url: https://download.docker.com/linux/ubuntu/gpg
     dest: /etc/apt/keyrings/docker.asc
     mode: '0644'
-    force: yes
+    force: true
 
 # Note: The Jinja2 mapping for architecture as docker requires the debian style architecture name 'amd64' but Ansible provides 'x86_64'
 # Both names mean the same to humans. The arm stuff is not tested though
@@ -21,12 +21,11 @@
 - name: Add Docker APT repository
   ansible.builtin.apt_repository:
     repo: >-
-      deb [arch={{ {'x86_64':'amd64','aarch64':'arm64','armv7l':'armhf'}
-      [ansible_architecture] }} signed-by=/etc/apt/keyrings/docker.asc]
+      deb [arch={{ {'x86_64': 'amd64', 'aarch64': 'arm64', 'armv7l': 'armhf'}[ansible_architecture] }} signed-by=/etc/apt/keyrings/docker.asc]
       https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
     state: present
     filename: docker
-    update_cache: yes
+    update_cache: true
 
 - name: Install Docker packages
   ansible.builtin.apt:
@@ -37,11 +36,10 @@
       - docker-buildx-plugin
       - docker-compose-plugin
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Verify Docker installation by running hello-world
   ansible.builtin.command: docker run hello-world
   register: docker_hello_world_result
   changed_when: docker_hello_world_result.rc != 0
-  ignore_errors: yes
-
+  ignore_errors: true
