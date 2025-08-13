@@ -1,0 +1,58 @@
+---
+- name: Desnap Ubuntu and prevent snappification
+  hosts: all
+  become: true
+  tasks:
+    - name: Get list of installed snaps
+      ansible.builtin.shell: snap list --all | tail -n +2 | awk '{print $1}'
+      register: installed_snaps
+      changed_when: false
+
+    - name: Remove all installed snaps
+      ansible.builtin.command: snap remove --purge {{ item }}
+      loop: "{{ installed_snaps.stdout_lines }}"
+      when: installed_snaps.stdout_lines | length > 0
+
+    - name: Stop snapd service
+      ansible.builtin.systemd:
+        name: snapd
+        state: stopped
+        enabled: no
+        masked: yes
+
+    - name: Purge snapd package
+      ansible.builtin.apt:
+        name: snapd
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: Hold snapd package to prevent reinstallation
+      ansible.builtin.dpkg_selections:
+        name: snapd
+        selection: hold
+
+    - name: Create apt preferences file to prevent snapd installation
+      ansible.builtin.copy:
+        content: |
+          Package: snapd
+          Pin: release a=*
+          Pin-Priority: -10
+        dest: /etc/apt/preferences.d/nosnap.pref
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Clean up snap directories in home
+      ansible.builtin.file:
+        path: "{{ ansible_env.HOME }}/snap/"
+        state: absent
+
+    - name: Clean up snap directories in root
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /snap
+        - /var/snap
+        - /var/lib/snapd
