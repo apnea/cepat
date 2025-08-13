@@ -1,6 +1,6 @@
 # Ansible Workstation Setup
 
-Goal:       Multi-distro Linux workstation configuration using Ansible with minimum required complexity to get the job done
+Goal:       Multi-distro Linux workstation configuration using Ansible with minimum required complexity to get the job done. It's like a pain equation: what is worse - setting all this shit up in ansible or hacking around in your new base install to get to where you want to be... At this point, I'm not sure...
 
 ## Tasks
 
