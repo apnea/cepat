@@ -9,10 +9,9 @@
 
     - name: Add user to docker group
       ansible.builtin.user:
-        name: "{{ ansible_user | default(ansible_user_id) }}"
+        name: "{{ my_user }}"
         groups: docker
         append: true
-      when: (ansible_user | default(ansible_user_id)) != 'root'
 
 - name: Configure Docker to start on boot
   become: true

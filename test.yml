@@ -1,0 +1,18 @@
+---
+- name: Linux Workstation Setup
+  hosts: all
+  become: true
+  environment:
+    http_proxy: http://192.168.68.127:3128
+    https_proxy: http://192.168.68.127:3128
+  vars_files:
+    - vars/common_packages.yml
+    - "vars/{{ ansible_os_family | lower }}.yml"
+
+  tasks:
+    - name: Include Docker installation tasks (Debian/Ubuntu)
+      ansible.builtin.include_tasks: tasks/docker_post_install.yml
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    - base

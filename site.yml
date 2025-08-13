@@ -10,6 +10,16 @@
     - "vars/{{ ansible_os_family | lower }}.yml"
 
   pre_tasks:
+    - name: Get my user
+      ansible.builtin.set_fact:
+        my_user: >-
+          {{ lookup('env', 'SUDO_USER') if lookup('env', 'SUDO_USER') else
+           lookup('env', 'USER') if lookup('env', 'USER') != 'root' else
+           ansible_user }}
+    - name: Print out user info
+      ansible.builtin.debug:
+        msg: "my_user: {{ my_user }}"
+
     - name: Disk usage at start
       ansible.builtin.command: df -h /
       register: disk_start
