@@ -1,3 +1,5 @@
+# The following broadly follows https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+# with the addition of 'signed-by' option to the APT repository
 ---
 - name: Create Docker GPG keyrings directory
   ansible.builtin.file:
@@ -42,3 +44,4 @@
   register: docker_hello_world_result
   changed_when: docker_hello_world_result.rc != 0
   ignore_errors: yes
+

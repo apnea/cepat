@@ -1,0 +1,29 @@
+---
+- name: Manage Docker as a non-root user
+  hosts: all
+  become: true
+  tasks:
+    - name: Create docker group
+      ansible.builtin.group:
+        name: docker
+        state: present
+
+    - name: Add user to docker group
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
+- name: Configure Docker to start on boot
+  hosts: all
+  become: true
+  tasks:
+    - name: Enable docker service
+      ansible.builtin.systemd:
+        name: docker.service
+        enabled: yes
+
+    - name: Enable containerd service
+      ansible.builtin.systemd:
+        name: containerd.service
+        enabled: yes
