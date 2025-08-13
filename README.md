@@ -46,9 +46,10 @@ Usage: ./test-vm.sh will create a vm, attempt to connect to it via hostname, run
 Testing note: Run a squid to cache the apt and other http requests originating from the script:
 
 vm: ```echo 'Acquire::http::Proxy "http://<host-ip>:3128";' | sudo tee /etc/apt/apt.conf.d/80proxy``` and  ```http_proxy=http://<host-ip>:3128```
-host: ```virsh net-dumpxml default``` to find IP range for acl (also checl squid access log if denied). Ensure big enough cache in squid.conf.
 
-## End-state Envisioned Structure
+host: ```virsh net-dumpxml default``` to find IP range for acl (also check squid access log if denied). Ensure big enough cache in squid.conf.
+
+## End-state??
 ```
 ├── site.yml              # Main playbook
 ├── inventory             # Hosts file
