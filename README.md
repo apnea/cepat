@@ -13,6 +13,8 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [ ] yadm dotfiles support
 - [ ] dotfiles dependencies
 - [ ] clean up vim install, plugins, etc
+- [ ] remove snap
+- [ ] flatpak + apps
 - [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
 - [ ] install vscode and assorted junk, codium and windsurf
 - [ ] claude-desktop for linux
