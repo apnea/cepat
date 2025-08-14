@@ -8,11 +8,8 @@
   vars_files:
     - vars/common_packages.yml
     - "vars/{{ ansible_os_family | lower }}.yml"
+    - vars/common_flatpaks.yml
 
   tasks:
-    - name: Include Docker installation tasks (Debian/Ubuntu)
-      ansible.builtin.include_tasks: tasks/docker_post_install.yml
-      when: ansible_os_family == 'Debian'
-
-  roles:
-    - base
+    - name: Flatpak installation
+      ansible.builtin.include_tasks: tasks/install_flatpaks.yml
