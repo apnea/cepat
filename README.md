@@ -8,14 +8,14 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] factor out some distro specific vars
 - [x] libvirt support client and host
 - [x] add timing and disk usage output
-- [x] basic docker install from docker repo https://docs.docker.com/engine/install/ubuntu/. Note: at this point in time the script uses additional 3.3 G from the base plucky server cloned image of 4.8 G, in about 3 1/2 minutes.
+- [x] basic docker install from docker repo https://docs.docker.com/engine/install/ubuntu/
 - [x] Linux post-installation steps for Docker Engine https://docs.docker.com/engine/install/linux-postinstall/
 - [x] add ansible linting to prod level
 - [ ] yadm dotfiles support
 - [ ] dotfiles dependencies
 - [ ] clean up vim install, plugins, etc
 - [x] remove snap
-- [ ] flatpak + apps
+- [x] flatpak + apps
 - [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
 - [ ] install vscode and assorted junk, codium and windsurf
 - [ ] claude-desktop for linux
