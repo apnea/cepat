@@ -65,6 +65,9 @@
       ansible.builtin.include_tasks: tasks/desnap_ubuntu.yml
       when: ansible_os_family == 'Debian'
 
+    - name: Flatpak installation
+      ansible.builtin.include_tasks: tasks/install_flatpaks.yml
+
   post_tasks:
     - name: Disk usage at end
       ansible.builtin.command: df -h /

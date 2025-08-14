@@ -1,0 +1,30 @@
+---
+- name: Install Flatpak applications
+  become: false
+  block:
+    - name: Add Flathub repository
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+        method: user
+
+    - name: Install common Flatpak applications
+      community.general.flatpak:
+        name: "{{ item }}"
+        state: present
+        method: user
+      loop: "{{ common_flatpaks }}"
+      register: flatpak_install_result
+      failed_when: false
+      changed_when: flatpak_install_result.rc == 0
+
+    - name: Show failed Flatpak installations
+      ansible.builtin.debug:
+        msg: "Failed to install {{ item.item }}: {{ item.stderr | default('Unknown error') }}"
+      loop: "{{ flatpak_install_result.results }}"
+      when:
+        - item.rc is defined
+        - item.rc != 0
+      loop_control:
+        label: "{{ item.item }}"
