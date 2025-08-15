@@ -105,13 +105,9 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 ### Enable Extensions
 ```bash
-# Enable extensions (run after installing each)
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-#gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
-#gnome-extensions enable just-perfection-desktop@just-perfection
-#gnome-extensions enable rounded-window-corners@yilozt
 gnome-extensions enable gsconnect@andyholmes.github.io
-#gnome-extensions enable fullscreen-avoider@noobsai.github.com
+
 ```
 
 ## Alternative Installation Methods
