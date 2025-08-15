@@ -13,7 +13,7 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] add ansible linting to prod level
 - [x] refactor to roles
 - [x] yadm dotfiles support
-- [ ] dotfiles dependencies
+- [x] dotfiles dependencies
 - [x] clean up vim install, plugins, etc
 - [x] remove snap
 - [x] flatpak + apps
