@@ -11,6 +11,7 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] basic docker install from docker repo https://docs.docker.com/engine/install/ubuntu/
 - [x] Linux post-installation steps for Docker Engine https://docs.docker.com/engine/install/linux-postinstall/
 - [x] add ansible linting to prod level
+- [x] refactor to roles
 - [ ] yadm dotfiles support
 - [ ] dotfiles dependencies
 - [ ] clean up vim install, plugins, etc
