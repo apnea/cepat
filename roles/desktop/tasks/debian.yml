@@ -31,6 +31,7 @@
       - ninja-build
       - libglib2.0-dev-bin
       - libxml2-utils
+      - cairo-dock
     state: present
   become: true
 
