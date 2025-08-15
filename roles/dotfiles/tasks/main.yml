@@ -25,3 +25,34 @@
   register: dotfiles_yadm_pull_result
   changed_when: "'Already up to date' not in dotfiles_yadm_pull_result.stdout"
   failed_when: false
+
+- name: Ensure ~/.local/mybin directory exists
+  ansible.builtin.file:
+    path: "/home/{{ my_user }}/.local/mybin"
+    state: directory
+    mode: '0755'
+    owner: "{{ my_user }}"
+    group: "{{ my_user }}"
+  become: true
+
+- name: Add ~/.local/mybin to PATH in .bashrc
+  ansible.builtin.lineinfile:
+    path: "/home/{{ my_user }}/.bashrc"
+    line: 'export PATH="$HOME/.local/mybin:$PATH"'
+    regexp: '^export PATH=.*\.local/mybin'
+    create: true
+    mode: '0644'
+    owner: "{{ my_user }}"
+    group: "{{ my_user }}"
+  become: true
+
+- name: Add ~/.local/mybin to PATH in .zshrc
+  ansible.builtin.lineinfile:
+    path: "/home/{{ my_user }}/.zshrc"
+    line: 'export PATH="$HOME/.local/mybin:$PATH"'
+    regexp: '^export PATH=.*\.local/mybin'
+    create: true
+    mode: '0644'
+    owner: "{{ my_user }}"
+    group: "{{ my_user }}"
+  become: true
