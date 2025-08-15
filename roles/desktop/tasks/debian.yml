@@ -30,5 +30,6 @@
       - meson
       - ninja-build
       - libglib2.0-dev-bin
+      - libxml2-utils
     state: present
   become: true

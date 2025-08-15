@@ -24,24 +24,12 @@ Install these via GNOME Extensions website or extension manager:
 1. **User Theme Support** (built-in)
    - Already included in gnome-shell-extensions
 
-2. **AppIndicator Support**
-   ```bash
-   sudo apt install gnome-shell-extension-appindicator
-   ```
-
-3. **Just Perfection**
-   - Install from: https://extensions.gnome.org/extension/3843/just-perfection/
-
-4. **Rounded Window Corners**
-   - Install from: https://extensions.gnome.org/extension/5237/rounded-window-corners/
-   - Alternative: https://extensions.gnome.org/extension/1514/rounded-corners/
-
-5. **GSConnect (KDE Connect)**
+2. **GSConnect (KDE Connect)**
    ```bash
    sudo apt install gnome-shell-extension-gsconnect
    ```
 
-6. **Fullscreen Avoider**
+3. **Fullscreen Avoider**
    - Install from: https://extensions.gnome.org/extension/4362/fullscreen-avoider/
 
 ## Themes Installation

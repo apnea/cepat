@@ -35,9 +35,7 @@
     key: "/org/gnome/shell/enabled-extensions"
     value: >-
       ['user-theme@gnome-shell-extensions.gcampax.github.com',
-       'appindicatorsupport@rgcjonas.gmail.com',
-       'just-perfection-desktop@just-perfection',
-       'rounded-window-corners@yilozt',
+       'fullscreen-avoider@noobsai.github.com',
        'gsconnect@andyholmes.github.io']
   become: false
 

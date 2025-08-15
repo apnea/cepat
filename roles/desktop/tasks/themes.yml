@@ -48,9 +48,9 @@
 
 - name: Clone Nordzy icon theme
   ansible.builtin.git:
-    repo: https://github.com/alvatip/Nordzy-icon.git
+    repo: https://github.com/MolassesLover/Nordzy-icon.git
     dest: "/home/{{ my_user }}/.local/src/Nordzy-icon"
-    version: master
+    version: main
     force: true
   become: true
   become_user: "{{ my_user }}"
@@ -69,7 +69,7 @@
   ansible.builtin.git:
     repo: https://github.com/alvatip/Sunity-cursors
     dest: "/home/{{ my_user }}/.local/src/Sunity-cursors"
-    version: master
+    version: main
     force: true
   become: true
   become_user: "{{ my_user }}"

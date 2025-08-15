@@ -9,34 +9,18 @@
     group: "{{ my_user }}"
   become: true
 
-- name: Download Just Perfection extension
+- name: Download Fullscreen Avoider extension
   ansible.builtin.get_url:
-    url: https://extensions.gnome.org/extension-data/just-perfection-desktopjust-perfection.v24.shell-extension.zip
-    dest: "/tmp/just-perfection.zip"
+    url: https://extensions.gnome.org/extension-data/fullscreen-avoidernoobsai.github.com.v5.shell-extension.zip
+    dest: "/tmp/fullscreen-avoider.zip"
     mode: '0644'
   become: false
 
-- name: Extract Just Perfection extension
+- name: Extract Fullscreen Avoider extension
   ansible.builtin.unarchive:
-    src: "/tmp/just-perfection.zip"
-    dest: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/just-perfection-desktop@just-perfection"
-    creates: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/just-perfection-desktop@just-perfection/metadata.json"
-    owner: "{{ my_user }}"
-    group: "{{ my_user }}"
-  become: true
-
-- name: Download Rounded Window Corners extension
-  ansible.builtin.get_url:
-    url: https://extensions.gnome.org/extension-data/rounded-window-cornersyilozt.v13.shell-extension.zip
-    dest: "/tmp/rounded-window-corners.zip"
-    mode: '0644'
-  become: false
-
-- name: Extract Rounded Window Corners extension
-  ansible.builtin.unarchive:
-    src: "/tmp/rounded-window-corners.zip"
-    dest: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/rounded-window-corners@yilozt"
-    creates: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/rounded-window-corners@yilozt/metadata.json"
+    src: "/tmp/fullscreen-avoider.zip"
+    dest: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/fullscreen-avoider@noobsai.github.com"
+    creates: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/fullscreen-avoider@noobsai.github.com/metadata.json"
     owner: "{{ my_user }}"
     group: "{{ my_user }}"
   become: true
@@ -46,6 +30,6 @@
     path: "{{ item }}"
     state: absent
   loop:
-    - "/tmp/just-perfection.zip"
     - "/tmp/rounded-window-corners.zip"
+    - "/tmp/fullscreen-avoider.zip"
   become: false
