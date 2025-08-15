@@ -2,6 +2,7 @@ common_distro_packages:
 # dev
   - git
   - vim
+  - yadm
 # shell and terminal
   - zsh
   - tmux
@@ -27,3 +28,4 @@ common_distro_packages:
 # infrastructure and virtualization
   - qemu-guest-agent
   - ansible
+  - ansible-lint

@@ -10,6 +10,5 @@
     - "vars/{{ ansible_os_family | lower }}.yml"
     - vars/common_flatpaks.yml
 
-  tasks:
-    - name: Flatpak installation
-      ansible.builtin.include_tasks: tasks/install_flatpaks.yml
+  roles:
+    - dotfiles

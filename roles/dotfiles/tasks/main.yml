@@ -1,0 +1,27 @@
+---
+# Main entry point for dotfiles role
+- name: Install yadm
+  ansible.builtin.package:
+    name: yadm
+    state: present
+  become: true
+
+- name: Check if yadm repo is already cloned
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.local/share/yadm/repo.git"
+  register: dotfiles_yadm_repo_check
+
+- name: Clone dotfiles repository with yadm
+  ansible.builtin.command: yadm clone https://github.com/apnea/dotfiles
+  become: false
+  when: not dotfiles_yadm_repo_check.stat.exists
+  register: dotfiles_yadm_clone_result
+  changed_when: dotfiles_yadm_clone_result.rc == 0
+
+- name: Update dotfiles repository if already exists
+  ansible.builtin.command: yadm pull
+  become: false
+  when: dotfiles_yadm_repo_check.stat.exists
+  register: dotfiles_yadm_pull_result
+  changed_when: "'Already up to date' not in dotfiles_yadm_pull_result.stdout"
+  failed_when: false
