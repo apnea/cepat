@@ -45,7 +45,6 @@
         update_cache: true
       when: ansible_os_family == 'Archlinux'
 
-  tasks:
     - name: Install distro specific packages
       ansible.builtin.package:
         name: "{{ item }}"
@@ -58,16 +57,7 @@
         state: present
       loop: "{{ common_distro_packages }}"
 
-    - name: Include Docker installation tasks (Debian/Ubuntu)
-      ansible.builtin.include_tasks: tasks/docker_install_main_ubuntu.yml
-      when: ansible_os_family == 'Debian'
-
-    - name: Desnappification (Ubuntu)
-      ansible.builtin.include_tasks: tasks/desnap_ubuntu.yml
-      when: ansible_os_family == 'Debian'
-
-    - name: Flatpak installation
-      ansible.builtin.include_tasks: tasks/install_flatpaks.yml
+  tasks: []
 
   post_tasks:
     - name: Disk usage at end
@@ -80,3 +70,5 @@
 
   roles:
     - base
+    - containerization
+    - package_management

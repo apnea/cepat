@@ -1,0 +1,27 @@
+---
+# Docker log rotation configuration
+# Based on https://docs.docker.com/engine/logging/drivers/json-file/
+- name: Ensure /etc/docker directory exists
+  ansible.builtin.file:
+    path: /etc/docker
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Configure log rotation in /etc/docker/daemon.json
+  ansible.builtin.copy:
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  register: containerization_docker_config
+  notify: Restart Docker service

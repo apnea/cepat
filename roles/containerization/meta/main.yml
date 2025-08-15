@@ -1,0 +1,23 @@
+---
+# Meta information for containerization role
+galaxy_info:
+  author: "{{ ansible_user | default('workstation-setup') }}"
+  description: Docker and container ecosystem installation and configuration
+  company: Local
+  license: MIT
+  min_ansible_version: "2.9"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - noble
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+    - name: ArchLinux
+      versions:
+        - all
+
+dependencies: []

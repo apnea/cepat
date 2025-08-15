@@ -1,0 +1,7 @@
+---
+# Main entry point for package management role
+- name: Include distro-specific package management tasks
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+
+- name: Install Flatpak applications
+  ansible.builtin.include_tasks: flatpak.yml

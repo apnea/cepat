@@ -1,0 +1,6 @@
+---
+# Package management tasks specific to Arch Linux/CachyOS
+# Arch doesn't have snap by default, so no desnap needed
+- name: Arch Linux package management placeholder
+  ansible.builtin.debug:
+    msg: "No specific package management cleanup needed for Arch Linux"

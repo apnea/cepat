@@ -1,0 +1,23 @@
+---
+# Meta information for package_management role
+galaxy_info:
+  author: "{{ ansible_user | default('workstation-setup') }}"
+  description: Package ecosystem management including snap removal and flatpak setup
+  company: Local
+  license: MIT
+  min_ansible_version: "2.9"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+        - noble
+    - name: Debian
+      versions:
+        - bullseye
+        - bookworm
+    - name: ArchLinux
+      versions:
+        - all
+
+dependencies: []

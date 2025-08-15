@@ -1,0 +1,10 @@
+---
+# Main entry point for containerization role
+- name: Include distro-specific Docker installation
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+
+- name: Configure Docker post-install settings
+  ansible.builtin.include_tasks: post_install.yml
+
+- name: Configure Docker log rotation
+  ansible.builtin.include_tasks: log_rotation.yml
