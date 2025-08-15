@@ -16,6 +16,15 @@
     mode: '0644'
   become: false
 
+- name: Create Fullscreen Avoider extension directory
+  ansible.builtin.file:
+    path: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/fullscreen-avoider@noobsai.github.com"
+    state: directory
+    mode: '0755'
+    owner: "{{ my_user }}"
+    group: "{{ my_user }}"
+  become: true
+
 - name: Extract Fullscreen Avoider extension
   ansible.builtin.unarchive:
     src: "/tmp/fullscreen-avoider.zip"
@@ -23,6 +32,7 @@
     creates: "/home/{{ my_user }}/.local/share/gnome-shell/extensions/fullscreen-avoider@noobsai.github.com/metadata.json"
     owner: "{{ my_user }}"
     group: "{{ my_user }}"
+    remote_src: true
   become: true
 
 - name: Clean up extension zip files

@@ -59,6 +59,13 @@
 
   tasks: []
 
+  roles:
+    - base
+    - containerization
+    - package_management
+    - dotfiles
+    - desktop
+
   post_tasks:
     - name: Disk usage at end
       ansible.builtin.command: df -h /
@@ -68,9 +75,9 @@
       ansible.builtin.debug:
         msg: "{{ disk_end.stdout_lines }}"
 
-  roles:
-    - base
-    - containerization
-    - package_management
-    - dotfiles
-    - desktop
+    - name: Reboot to apply changes
+      ansible.builtin.reboot:
+        reboot_timeout: 300
+        connect_timeout: 20
+        test_command: uptime
+      become: true

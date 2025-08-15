@@ -33,3 +33,20 @@
       - libxml2-utils
     state: present
   become: true
+
+- name: Enable GDM3 display manager
+  ansible.builtin.systemd:
+    name: gdm3
+    enabled: true
+  become: true
+
+- name: Set graphical target as default
+  ansible.builtin.systemd:
+    name: graphical.target
+    enabled: true
+  become: true
+
+- name: Set default target to graphical
+  ansible.builtin.command: systemctl set-default graphical.target
+  become: true
+  changed_when: false
