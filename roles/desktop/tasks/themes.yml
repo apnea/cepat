@@ -42,7 +42,6 @@
   args:
     chdir: "/home/{{ my_user }}/.local/share/themes/WhiteSur-gtk-theme"
   become: true
-  become_user: "{{ my_user }}"
   when: desktop_whitesur_clone is changed
   changed_when: true
 
