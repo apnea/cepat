@@ -9,7 +9,7 @@ common_distro_packages:
   - alacritty
   - fish
   - kitty
-  - parcellite
+  - gpaste-2
 # general utilities
   - curl
   - wget
