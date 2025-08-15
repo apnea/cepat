@@ -22,6 +22,7 @@ common_distro_packages:
   - openssh-client
   - network-manager
   - flatpak
+  - firefox
 # display related
   - qtile
   - fonts-firacode
