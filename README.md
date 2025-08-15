@@ -17,6 +17,7 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] clean up vim install, plugins, etc
 - [x] remove snap
 - [x] flatpak + apps
+- [x] gnome setup with themes, fonts, extensions for Debian/Ubuntu
 - [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
 - [ ] install vscode and assorted junk, codium and windsurf
 - [ ] claude-desktop for linux
