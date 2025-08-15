@@ -2,7 +2,7 @@
 # Theme installation and setup
 - name: Create themes directory
   ansible.builtin.file:
-    path: "/home/{{ my_user }}/.themes"
+    path: "/home/{{ my_user }}/.local/share/themes"
     state: directory
     mode: '0755'
     owner: "{{ my_user }}"
@@ -11,7 +11,7 @@
 
 - name: Create icons directory
   ansible.builtin.file:
-    path: "/home/{{ my_user }}/.icons"
+    path: "/home/{{ my_user }}/.local/share/icons"
     state: directory
     mode: '0755'
     owner: "{{ my_user }}"
@@ -21,7 +21,7 @@
 - name: Clone WhiteSur theme
   ansible.builtin.git:
     repo: https://github.com/vinceliuice/WhiteSur-gtk-theme.git
-    dest: "/home/{{ my_user }}/.local/src/WhiteSur-gtk-theme"
+    dest: "/home/{{ my_user }}/.local/share/themes/WhiteSur-gtk-theme"
     version: master
     force: true
   become: true
@@ -31,7 +31,7 @@
 - name: Install WhiteSur theme  # noqa no-handler
   ansible.builtin.command: ./install.sh -c Dark -t orange -N glassy
   args:
-    chdir: "/home/{{ my_user }}/.local/src/WhiteSur-gtk-theme"
+    chdir: "/home/{{ my_user }}/.local/share/themes/WhiteSur-gtk-theme"
   become: true
   become_user: "{{ my_user }}"
   when: desktop_whitesur_clone is changed
@@ -40,7 +40,7 @@
 - name: Install WhiteSur shell theme  # noqa no-handler
   ansible.builtin.command: ./tweaks.sh -g -o normal
   args:
-    chdir: "/home/{{ my_user }}/.local/src/WhiteSur-gtk-theme"
+    chdir: "/home/{{ my_user }}/.local/share/themes/WhiteSur-gtk-theme"
   become: true
   become_user: "{{ my_user }}"
   when: desktop_whitesur_clone is changed
@@ -49,7 +49,7 @@
 - name: Clone Nordzy icon theme
   ansible.builtin.git:
     repo: https://github.com/MolassesLover/Nordzy-icon.git
-    dest: "/home/{{ my_user }}/.local/src/Nordzy-icon"
+    dest: "/home/{{ my_user }}/.local/share/icons/Nordzy-icon"
     version: main
     force: true
   become: true
@@ -59,7 +59,7 @@
 - name: Install Nordzy icon theme  # noqa no-handler
   ansible.builtin.command: ./install.sh -t dark -c light
   args:
-    chdir: "/home/{{ my_user }}/.local/src/Nordzy-icon"
+    chdir: "/home/{{ my_user }}/.local/share/icons/Nordzy-icon"
   become: true
   become_user: "{{ my_user }}"
   when: desktop_nordzy_clone is changed
@@ -68,7 +68,7 @@
 - name: Clone Sunity cursor theme
   ansible.builtin.git:
     repo: https://github.com/alvatip/Sunity-cursors
-    dest: "/home/{{ my_user }}/.local/src/Sunity-cursors"
+    dest: "/home/{{ my_user }}/.local/share/icons/Sunity-cursors"
     version: main
     force: true
   become: true
@@ -78,7 +78,7 @@
 - name: Install Sunity cursor theme  # noqa no-handler
   ansible.builtin.command: ./install.sh
   args:
-    chdir: "/home/{{ my_user }}/.local/src/Sunity-cursors"
+    chdir: "/home/{{ my_user }}/.local/share/icons/Sunity-cursors"
   become: true
   become_user: "{{ my_user }}"
   when: desktop_sunity_clone is changed
