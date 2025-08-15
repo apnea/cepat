@@ -1,5 +1,6 @@
 common_flatpaks:
   - com.brave.Browser
+  - org.mozilla.firefox
   - com.discordapp.Discord
   - com.github.iwalton3.jellyfin-media-player
   - com.github.johnfactotum.Foliate
