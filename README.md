@@ -49,20 +49,32 @@ vm: ```echo 'Acquire::http::Proxy "http://<host-ip>:3128";' | sudo tee /etc/apt/
 
 host: ```virsh net-dumpxml default``` to find IP range for acl (also check squid access log if denied). Ensure big enough cache in squid.conf.
 
-## End-state??
+## End-state
 ```
-├── site.yml              # Main playbook
-├── inventory             # Hosts file
-├── install.sh           # Run script
-├── vars/                # Variables
-│   ├── main.yml         # Common vars
-│   ├── debian.yml       # Debian/Ubuntu specific
-│   └── archlinux.yml    # Arch/CachyOS specific
-├── tasks/               # OS-specific tasks
-│   ├── debian/
-│   └── archlinux/
-└── roles/               # Role definitions
+├── site.yml                # Main playbook
+├── inventory               # Hosts file
+├── install.sh              # Run script
+├── vars/                   # Variables
+│   ├── common_packages.yml
+│   ├── common_flatpaks.yml
+│   ├── debian.yml          # Debian/Ubuntu specific
+│   └── archlinux.yml       # Arch/CachyOS specific
+├── tasks/                  # Legacy task files (to be removed)
+└── roles/                  # Feature-focused roles
     ├── base/
+    ├── containerization/   # Docker + container ecosystem
+    │   └── tasks/
+    │       ├── main.yml
+    │       ├── debian.yml
+    │       ├── archlinux.yml
+    │       ├── post_install.yml
+    │       └── log_rotation.yml
+    ├── package_management/  # Package ecosystem management
+    │   └── tasks/
+    │       ├── main.yml
+    │       ├── debian.yml
+    │       ├── archlinux.yml
+    │       └── flatpak.yml
     ├── development/
     ├── desktop/
     └── dotfiles/

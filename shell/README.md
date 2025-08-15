@@ -1,0 +1,1 @@
+These are shell scripts that I used to test and develop the ansible playbooks. They are not needed for the ansible playbooks to run.

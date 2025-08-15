@@ -1,8 +1,0 @@
-- name: Install Docker on Ubuntu
-  ansible.builtin.import_tasks: docker_install_ubuntu.yml
-
-- name: Configure Docker post-install settings
-  ansible.builtin.import_tasks: docker_post_install.yml
-
-- name: Configure Docker log rotation
-  ansible.builtin.import_tasks: docker_log_rotate.yml
