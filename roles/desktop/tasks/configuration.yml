@@ -15,7 +15,7 @@
 - name: Set icon theme
   community.general.dconf:
     key: "/org/gnome/desktop/interface/icon-theme"
-    value: "'Nordzy-dark--light_panel'"
+    value: "'Nordzy-dark'"
   become: false
 
 - name: Set cursor theme
