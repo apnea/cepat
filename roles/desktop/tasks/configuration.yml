@@ -1,0 +1,54 @@
+---
+# GNOME configuration via gsettings
+- name: Set GTK theme
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/gtk-theme"
+    value: "'WhiteSur-Dark-nord'"
+  become: false
+
+- name: Set shell theme
+  community.general.dconf:
+    key: "/org/gnome/shell/extensions/user-theme/name"
+    value: "'WhiteSur-Dark-nord'"
+  become: false
+
+- name: Set icon theme
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/icon-theme"
+    value: "'Nordzy-dark--light_panel'"
+  become: false
+
+- name: Set cursor theme
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/cursor-theme"
+    value: "'Sunity-cursors'"
+  become: false
+
+- name: Set dark mode preference
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/color-scheme"
+    value: "'prefer-dark'"
+  become: false
+
+- name: Enable user themes extension
+  community.general.dconf:
+    key: "/org/gnome/shell/enabled-extensions"
+    value: >-
+      ['user-theme@gnome-shell-extensions.gcampax.github.com',
+       'appindicatorsupport@rgcjonas.gmail.com',
+       'just-perfection-desktop@just-perfection',
+       'rounded-window-corners@yilozt',
+       'gsconnect@andyholmes.github.io']
+  become: false
+
+- name: Set font preferences
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/font-name"
+    value: "'Roboto 11'"
+  become: false
+
+- name: Set monospace font
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/monospace-font-name"
+    value: "'JetBrains Mono 10'"
+  become: false

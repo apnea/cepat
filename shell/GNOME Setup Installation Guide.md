@@ -1,11 +1,10 @@
-# GNOME Setup Installation Guide for Ubuntu Server
+# GNOME Setup Installation Guide for Base Server Box
 
 ## Prerequisites
 ```bash
-# Install GNOME Desktop on Ubuntu Server
+# Install GNOME Desktop on Server
 sudo apt update
-sudo apt install ubuntu-desktop-minimal
-# OR for full desktop: sudo apt install gnome-shell
+sudo apt install vanilla-gnome-desktop vanilla-gnome-default-settings
 ```
 
 ## Essential Extensions
@@ -76,10 +75,9 @@ cd Nordzy-icon
 ### Sunity Cursor Theme
 ```bash
 # Download and install Sunity cursors
-wget https://github.com/alvatip/Sunity-cursor/releases/latest/download/Sunity-cursors.tar.gz
-tar -xf Sunity-cursors.tar.gz
-mkdir -p ~/.icons
-mv Sunity-cursors* ~/.icons/
+git clone https://github.com/alvatip/Sunity-cursors
+cd Sunity-cursors
+./install.sh
 ```
 
 ## Font Installation
@@ -121,11 +119,11 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 ```bash
 # Enable extensions (run after installing each)
 gnome-extensions enable user-theme@gnome-shell-extensions.gcampax.github.com
-gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
-gnome-extensions enable just-perfection-desktop@just-perfection
-gnome-extensions enable rounded-window-corners@yilozt
+#gnome-extensions enable appindicatorsupport@rgcjonas.gmail.com
+#gnome-extensions enable just-perfection-desktop@just-perfection
+#gnome-extensions enable rounded-window-corners@yilozt
 gnome-extensions enable gsconnect@andyholmes.github.io
-gnome-extensions enable fullscreen-avoider@noobsai.github.com
+#gnome-extensions enable fullscreen-avoider@noobsai.github.com
 ```
 
 ## Alternative Installation Methods

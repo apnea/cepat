@@ -1,0 +1,16 @@
+---
+# Main entry point for desktop role
+- name: Include distro-specific GNOME installation
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+
+- name: Install fonts
+  ansible.builtin.include_tasks: fonts.yml
+
+- name: Install and configure themes
+  ansible.builtin.include_tasks: themes.yml
+
+- name: Install GNOME extensions
+  ansible.builtin.include_tasks: extensions.yml
+
+- name: Apply GNOME configuration
+  ansible.builtin.include_tasks: configuration.yml

@@ -1,0 +1,45 @@
+---
+# GNOME Extensions installation (focusing on 2 essential ones)
+- name: Create extensions directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions"
+    state: directory
+    mode: '0755'
+  become: false
+
+- name: Download Just Perfection extension
+  ansible.builtin.get_url:
+    url: https://extensions.gnome.org/extension-data/just-perfection-desktopjust-perfection.v24.shell-extension.zip
+    dest: "/tmp/just-perfection.zip"
+    mode: '0644'
+  become: false
+
+- name: Extract Just Perfection extension
+  ansible.builtin.unarchive:
+    src: "/tmp/just-perfection.zip"
+    dest: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/just-perfection-desktop@just-perfection"
+    creates: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/just-perfection-desktop@just-perfection/metadata.json"
+  become: false
+
+- name: Download Rounded Window Corners extension
+  ansible.builtin.get_url:
+    url: https://extensions.gnome.org/extension-data/rounded-window-cornersyilozt.v13.shell-extension.zip
+    dest: "/tmp/rounded-window-corners.zip"
+    mode: '0644'
+  become: false
+
+- name: Extract Rounded Window Corners extension
+  ansible.builtin.unarchive:
+    src: "/tmp/rounded-window-corners.zip"
+    dest: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/rounded-window-corners@yilozt"
+    creates: "{{ ansible_env.HOME }}/.local/share/gnome-shell/extensions/rounded-window-corners@yilozt/metadata.json"
+  become: false
+
+- name: Clean up extension zip files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/tmp/just-perfection.zip"
+    - "/tmp/rounded-window-corners.zip"
+  become: false

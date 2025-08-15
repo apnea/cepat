@@ -1,0 +1,34 @@
+---
+# Font installation (common across distros)
+- name: Install fonts (Debian/Ubuntu)
+  ansible.builtin.apt:
+    name:
+      - fonts-dejavu
+      - fonts-liberation
+      - fonts-noto
+      - fonts-firacode
+      - fonts-jetbrains-mono
+      - fonts-roboto
+      - fonts-open-sans
+    state: present
+  become: true
+  when: ansible_os_family == 'Debian'
+
+- name: Install fonts (Arch Linux)
+  community.general.pacman:
+    name:
+      - ttf-dejavu
+      - ttf-liberation
+      - noto-fonts
+      - ttf-fira-code
+      - ttf-jetbrains-mono
+      - ttf-roboto
+      - ttf-opensans
+    state: present
+  become: true
+  when: ansible_os_family == 'Archlinux'
+
+- name: Refresh font cache
+  ansible.builtin.command: fc-cache -fv
+  become: true
+  changed_when: false

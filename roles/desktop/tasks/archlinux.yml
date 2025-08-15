@@ -1,0 +1,35 @@
+---
+# GNOME installation for Arch Linux/CachyOS
+- name: Install GNOME Desktop
+  community.general.pacman:
+    name:
+      - gnome
+      - gnome-tweaks
+      - gnome-shell-extensions
+    state: present
+  become: true
+
+- name: Install GNOME Extensions support
+  community.general.pacman:
+    name:
+      - chrome-gnome-shell
+      - gnome-browser-connector
+    state: present
+  become: true
+
+- name: Install theme dependencies
+  community.general.pacman:
+    name:
+      - gtk-engine-murrine
+      - sassc
+      - meson
+      - ninja
+      - glib2-devel
+    state: present
+  become: true
+
+- name: Enable GDM display manager
+  ansible.builtin.systemd:
+    name: gdm
+    enabled: true
+  become: true
