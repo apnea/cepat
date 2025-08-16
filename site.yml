@@ -74,10 +74,3 @@
     - name: Show disk usage at end
       ansible.builtin.debug:
         msg: "{{ disk_end.stdout_lines }}"
-
-    - name: Reboot to apply changes
-      ansible.builtin.reboot:
-        reboot_timeout: 300
-        connect_timeout: 20
-        test_command: uptime
-      become: true
