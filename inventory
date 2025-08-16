@@ -1,5 +1,5 @@
 [blob]
-testbox
+us2404
 
 [local]
 localhost ansible_connection=local

@@ -60,7 +60,6 @@
   tasks: []
 
   roles:
-    - base
     - containerization
     - package_management
     - dotfiles
