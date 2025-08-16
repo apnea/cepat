@@ -8,19 +8,34 @@
 
 - name: Check if yadm repo is already cloned
   ansible.builtin.stat:
-    path: "{{ ansible_env.HOME }}/.local/share/yadm/repo.git"
+    path: "/home/{{ my_user }}/.local/share/yadm/repo.git"
   register: dotfiles_yadm_repo_check
 
-- name: Clone dotfiles repository with yadm
+- name: Clone dotfiles repository with yadm (first time)
   ansible.builtin.command: yadm clone https://github.com/apnea/dotfiles
-  become: false
+  become: true
+  become_user: "{{ my_user }}"
   when: not dotfiles_yadm_repo_check.stat.exists
   register: dotfiles_yadm_clone_result
   changed_when: dotfiles_yadm_clone_result.rc == 0
+  failed_when: false
+
+- name: Force clone if clone failed due to existing repo
+  ansible.builtin.command: yadm clone -f https://github.com/apnea/dotfiles
+  become: true
+  become_user: "{{ my_user }}"
+  when:
+    - not dotfiles_yadm_repo_check.stat.exists
+    - dotfiles_yadm_clone_result is defined
+    - dotfiles_yadm_clone_result.rc != 0
+    - "'Git repo already exists' in dotfiles_yadm_clone_result.stderr"
+  register: dotfiles_yadm_force_clone_result
+  changed_when: dotfiles_yadm_force_clone_result.rc == 0
 
 - name: Update dotfiles repository if already exists
   ansible.builtin.command: yadm pull
-  become: false
+  become: true
+  become_user: "{{ my_user }}"
   when: dotfiles_yadm_repo_check.stat.exists
   register: dotfiles_yadm_pull_result
   changed_when: "'Already up to date' not in dotfiles_yadm_pull_result.stdout"
