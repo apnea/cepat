@@ -56,7 +56,7 @@
   register: desktop_nordzy_clone
 
 - name: Install Nordzy icon theme  # noqa no-handler
-  ansible.builtin.command: ./install.sh -t dark -c light
+  ansible.builtin.command: ./install.sh -t orange -c dark
   args:
     chdir: "/home/{{ my_user }}/.local/share/icons/Nordzy-icon"
   become: true
