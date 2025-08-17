@@ -2,6 +2,7 @@
 # Host preparation script for Ansible playbook execution
 #
 # On a fresh trixie install you may need
+# sudo sed -i '/cdrom/d' /etc/apt/sources.list
 # printf "deb http://deb.debian.org/debian trixie main contrib non-free-firmware\ndeb http://deb.debian.org/debian trixie-updates main contrib non-free-firmware\ndeb http://security.debian.org/debian-security trixie-security main contrib non-free-firmware\ndeb http://deb.debian.org/debian trixie-backports main contrib non-free-firmware\n" | sudo tee /etc/apt/sources.list > /dev/null
 # sudo apt install git
 
