@@ -13,4 +13,7 @@ distro_packages:
   - python3-pip
   - qemu-system
   - ubuntu-restricted-extras  # Ubuntu-specific
-
+  - fonts-firacode
+  - openssh-client
+  - network-manager
+  - python3-psutil

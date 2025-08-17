@@ -16,14 +16,9 @@ common_distro_packages:
   - tree
   - ripgrep
   - jq
-  - openssh-client
-  - network-manager
   - flatpak
-# display related
-  - qtile
-  - fonts-firacode
-# infrastructure and virtualization
+  # infrastructure and virtualization
   - qemu-guest-agent
   - ansible
   - ansible-lint
-  - python3-psutil
+  

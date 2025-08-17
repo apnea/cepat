@@ -9,3 +9,6 @@ distro_packages:
   - sudo
   - python-pip
   - qemu
+  - networkmanager
+  - ttf-fira-code
+  - python-psutil

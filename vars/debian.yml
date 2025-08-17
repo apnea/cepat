@@ -12,3 +12,7 @@ distro_packages:
   - python3-pip
   - qemu-system
   - firmware-linux-nonfree  # Debian-specific
+  - fonts-firacode
+  - openssh-client
+  - network-manager
+  - python3-psutil
