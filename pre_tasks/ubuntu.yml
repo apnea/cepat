@@ -1,0 +1,21 @@
+---
+# Ubuntu-specific pre-tasks: repository setup
+- name: Update apt cache (Ubuntu)
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+
+- name: Install python-apt (Ubuntu)
+  ansible.builtin.apt:
+    name: python3-apt
+    state: present
+  become: true
+
+- name: Enable universe repository (Ubuntu)
+  ansible.builtin.apt_repository:
+    repo: "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
+    state: present
+    filename: universe
+    update_cache: true
+  become: true
+  when: ansible_distribution == 'Ubuntu'

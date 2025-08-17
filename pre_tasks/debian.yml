@@ -1,0 +1,28 @@
+---
+# Debian-specific pre-tasks: repository setup
+- name: Update apt cache (Debian)
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+
+- name: Install python-apt (Debian)
+  ansible.builtin.apt:
+    name: python3-apt
+    state: present
+  become: true
+
+- name: Enable Debian backports repository
+  ansible.builtin.apt_repository:
+    repo: "deb http://deb.debian.org/debian {{ ansible_distribution_release }}-backports main"
+    state: present
+    filename: backports
+    update_cache: true
+  become: true
+
+- name: Enable contrib and non-free repositories
+  ansible.builtin.apt_repository:
+    repo: "deb http://deb.debian.org/debian {{ ansible_distribution_release }} main contrib non-free non-free-firmware"
+    state: present
+    filename: debian-contrib
+    update_cache: true
+  become: true

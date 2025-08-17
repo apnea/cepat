@@ -1,0 +1,52 @@
+---
+# Main pre-tasks entry point
+- name: Get my user
+  ansible.builtin.set_fact:
+    my_user: >-
+      {{ lookup('env', 'SUDO_USER') if lookup('env', 'SUDO_USER') else
+       lookup('env', 'USER') if lookup('env', 'USER') != 'root' else
+       ansible_user }}
+
+- name: Print out user info
+  ansible.builtin.debug:
+    msg: "my_user: {{ my_user }}"
+
+- name: Set distribution fact for consistent naming
+  ansible.builtin.set_fact:
+    distro_name: >-
+      {%- set ubuntu_distros = ['Ubuntu', 'Pop!_OS', 'Linux Mint', 'elementary OS'] -%}
+      {%- set arch_distros = ['CachyOS', 'Manjaro', 'EndeavourOS'] -%}
+      {%- if ansible_distribution in ubuntu_distros or 'ubuntu' in (ansible_distribution_like | default('')) | lower -%}
+        ubuntu
+      {%- elif ansible_distribution == 'Debian' -%}
+        debian
+      {%- elif ansible_os_family == 'Archlinux' or ansible_distribution in arch_distros -%}
+        archlinux
+      {%- else -%}
+        {{ ansible_os_family | lower }}
+      {%- endif -%}
+
+- name: Debug distribution detection
+  ansible.builtin.debug:
+    msg: |
+      ansible_distribution: '{{ ansible_distribution }}'
+      ansible_os_family: '{{ ansible_os_family }}'
+      distro_name: '{{ distro_name }}'
+
+- name: Load OS-specific variables
+  ansible.builtin.include_vars: "vars/{{ distro_name }}.yml"
+
+- name: Include distro-specific repository setup
+  ansible.builtin.include_tasks: "{{ distro_name }}.yml"
+
+- name: Install distro specific packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ distro_packages }}"
+
+- name: Install common packages
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ common_distro_packages }}"

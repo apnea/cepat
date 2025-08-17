@@ -1,0 +1,6 @@
+---
+# Arch Linux-specific pre-tasks: repository setup
+- name: Update pacman cache (Archlinux)
+  community.general.pacman:
+    update_cache: true
+  become: true
