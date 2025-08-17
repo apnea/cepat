@@ -28,33 +28,33 @@ case "$HOST" in
         sudo apt install -y ansible ansible-lint
         sudo apt install -y python3-pip
         if [ "$USEPROXY" = true ]; then
-            printf "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
-            printf "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
+            echo "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
+            echo "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
         fi
         ;;
     debian)
         sudo apt update
         sudo apt install -y ansible ansible-lint
         if [ "$USEPROXY" = true ]; then
-            printf "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
-            printf "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
+            echo "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
+            echo "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
         fi
         ;;
     arch)
         sudo pacman -Sy ansible ansible-lint
         ;;
     *)
-        printf "Unsupported host: $HOST"
+        echo "Unsupported host: $HOST"
         exit 1
         ;;
 esac
 
 printf "\nAnsible version is: %s\n" "$(ansible --version)"
 
-mkdir ~/src || exit 1
+mkdir ~/src
 
 printf "\nCloning playbook repository...\n"
 git clone $PLAYBOOK ~/src/cepat
 cd ~/src/cepat || exit 1
 printf "\nDone! You can now run the playbook with:\n"
-printf "ansible-playbook -i inventory site.yml --limit local --ask-become-pass"
+echo "ansible-playbook -i inventory site.yml --limit local --ask-become-pass"
