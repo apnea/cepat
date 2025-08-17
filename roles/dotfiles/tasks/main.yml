@@ -60,14 +60,3 @@
     owner: "{{ my_user }}"
     group: "{{ my_user }}"
   become: true
-
-- name: Add ~/.local/mybin to PATH in .zshrc
-  ansible.builtin.lineinfile:
-    path: "/home/{{ my_user }}/.zshrc"
-    line: 'export PATH="$HOME/.local/mybin:$PATH"'
-    regexp: '^export PATH=.*\.local/mybin'
-    create: true
-    mode: '0644'
-    owner: "{{ my_user }}"
-    group: "{{ my_user }}"
-  become: true
