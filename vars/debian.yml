@@ -5,7 +5,6 @@ package_install_cmd: "apt install -y"
 
 distro_packages:
   - build-essential
-  - software-properties-common
   - apt-transport-https
   - ca-certificates
   - gnupg
@@ -13,4 +12,3 @@ distro_packages:
   - python3-pip
   - qemu-system
   - firmware-linux-nonfree  # Debian-specific
-  - contrib  # Enable contrib repos
