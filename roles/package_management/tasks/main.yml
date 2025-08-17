@@ -3,5 +3,5 @@
 - name: Include distro-specific package management tasks
   ansible.builtin.include_tasks: "{{ distro_name }}.yml"
 
-- name: Install Flatpak applications
-  ansible.builtin.include_tasks: flatpak.yml
+#- name: Install Flatpak applications
+#  ansible.builtin.include_tasks: flatpak.yml
