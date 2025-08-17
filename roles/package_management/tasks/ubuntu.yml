@@ -1,5 +1,5 @@
 ---
-# Package management tasks specific to Debian/Ubuntu
+# Package management tasks specific to Ubuntu and Ubuntu-based distros
 - name: Desnap Ubuntu and prevent snappification
   become: true
   block:
@@ -51,7 +51,7 @@
 
     - name: Clean up snap directories in home
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/snap/"
+        path: "/home/{{ my_user }}/snap/"
         state: absent
 
     - name: Clean up snap directories in root
