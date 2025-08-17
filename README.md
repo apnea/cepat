@@ -19,8 +19,8 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] flatpak + apps
 - [x] gnome setup with themes, fonts, extensions for Debian/Ubuntu
 - [x] refactor detection to distinguish Ubuntu vs Debian vs Arch
-- [ ] split vars/debian.yml into separate ubuntu.yml and debian.yml
-- [ ] refactor containerization role for Ubuntu/Debian/Arch differences
+- [x] split vars/debian.yml into separate ubuntu.yml and debian.yml
+- [x] refactor containerization role for Ubuntu/Debian/Arch differences
 - [ ] refactor package_management role for distro-specific handling
 - [ ] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
 - [ ] add development role (vscode, codium, windsurf, dev tools)

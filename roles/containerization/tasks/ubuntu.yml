@@ -1,5 +1,5 @@
 ---
-# Docker installation for Debian/Ubuntu
+# Docker installation for Ubuntu and Ubuntu-based distros (Pop!_OS, Linux Mint, etc.)
 # Following https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
 - name: Create Docker GPG keyrings directory
   ansible.builtin.file:

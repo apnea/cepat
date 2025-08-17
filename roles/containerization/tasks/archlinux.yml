@@ -9,6 +9,13 @@
     state: present
   become: true
 
+- name: Enable and start Docker service
+  ansible.builtin.systemd:
+    name: docker
+    enabled: true
+    state: started
+  become: true
+
 - name: Verify Docker installation by running hello-world
   ansible.builtin.command: docker run hello-world
   register: containerization_docker_hello_world_result
