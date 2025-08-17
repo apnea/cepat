@@ -26,26 +26,28 @@ printf "\nPreparing host for Ansible playbook execution...\n"
 
 case "$HOST" in
     ubuntu)
+        if [ "$USEPROXY" = true ]; then
+            echo "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
+            echo "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
+        fi
         sudo apt update
         sudo apt install -y software-properties-common
         sudo add-apt-repository --yes --update ppa:ansible/ansible
         sudo apt install -y ansible ansible-lint
         sudo apt install -y python3-pip
-        if [ "$USEPROXY" = true ]; then
-            echo "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
-            echo "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
-        fi
         ;;
     debian)
-        sudo apt update
-        sudo apt install -y ansible ansible-lint
         if [ "$USEPROXY" = true ]; then
             echo "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
             echo "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
         fi
-        ;;
+        sudo apt update
+        sudo apt install -y ansible ansible-lint        ;;
     arch)
-        sudo pacman -Sy ansible ansible-lint
+        echo "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
+        echo "https_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
+        sudo pacman -Syu --noconfirm
+        sudo pacman -S --noconfirm ansible ansible-lint
         ;;
     *)
         echo "Unsupported host: $HOST"
