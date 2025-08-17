@@ -60,3 +60,17 @@
     owner: "{{ my_user }}"
     group: "{{ my_user }}"
   become: true
+
+- name: Download Starship install script
+  ansible.builtin.get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship_install.sh
+    mode: '0755'
+  become: true
+
+- name: Install Starship
+  ansible.builtin.command: /tmp/starship_install.sh
+  become: true
+  become_user: "{{ my_user }}"
+  args:
+    creates: /usr/local/bin/starship
