@@ -14,7 +14,7 @@ HOST=$(awk -F= '/^ID=/ {print $2}' /etc/os-release | tr -d '"')
 VERSION_CODENAME=$(awk -F= '/^VERSION_CODENAME=/ {print $2}' /etc/os-release | tr -d '"')
 PROXY="http://192.168.68.127:3128"
 PLAYBOOK="https://github.com/apnea/cepat.git"
-USEPROXY=true
+USEPROXY=false
 
 printf "Detected host as $HOST and version as $VERSION_CODENAME"
 printf "Proxy set to $PROXY"
