@@ -23,18 +23,17 @@ Goal:       Multi-distro Linux workstation configuration using Ansible
 - [x] refactor containerization role for Ubuntu/Debian/Arch differences
 - [x] refactor package_management role for distro-specific handling
 - [x] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
+- [x] test on Ubuntu Server 24.04, Debian 13, CachyOS -> success!
 - [ ] add nvidia driver and cuda support detection/installation
 - [ ] add development role (vscode, codium, windsurf, dev tools)
 - [ ] add ai_tools role (claude-desktop, gemini-cli, mcp-commander)
 - [ ] add virtualization role (enhanced libvirt, qemu setup)
-- [ ] test on Ubuntu 22.04/24.04, Debian 12/13, Arch/CachyOS
 - [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
 - [ ] install vscode and assorted junk, codium and windsurf
 - [ ] claude-desktop for linux
 - [ ] mcp commander
 - [ ] npm install -g @google/gemini-cli
 - [ ] download/build the common dev containers
-- [ ] figure out what desktop support the script should provide (display/window manager/etc) - gnome and qtile?
 
 ## Usage notes
 
