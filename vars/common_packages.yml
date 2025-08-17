@@ -8,7 +8,6 @@ common_distro_packages:
   - alacritty
   - fish
   - kitty
-  - gpaste-2
 # general utilities
   - curl
   - wget
