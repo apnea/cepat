@@ -10,7 +10,6 @@
   vars_files:
     - vars/common_packages.yml
     - vars/common_flatpaks.yml
-    - "vars/{{ ansible_os_family | lower }}.yml"
 
   pre_tasks:
     - name: Get my user
@@ -22,6 +21,13 @@
     - name: Print out user info
       ansible.builtin.debug:
         msg: "my_user: {{ my_user }}"
+
+    - name: Debug OS family
+      ansible.builtin.debug:
+        msg: "ansible_os_family: '{{ ansible_os_family }}', lowercase: '{{ ansible_os_family | lower }}'"
+
+    - name: Load OS-specific variables
+      ansible.builtin.include_vars: "vars/{{ ansible_os_family | lower }}.yml"
 
     - name: Disk usage at start
       ansible.builtin.command: df -h /
