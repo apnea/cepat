@@ -43,7 +43,7 @@ case "$HOST" in
         fi
         sudo apt update
         sudo apt install -y ansible ansible-lint        ;;
-    arch)
+    cachyos)
         echo "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
         echo "https_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
         sudo pacman -Syu --noconfirm
