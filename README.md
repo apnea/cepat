@@ -22,7 +22,7 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] split vars/debian.yml into separate ubuntu.yml and debian.yml
 - [x] refactor containerization role for Ubuntu/Debian/Arch differences
 - [ ] refactor package_management role for distro-specific handling
-- [ ] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
+- [x] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
 - [ ] add development role (vscode, codium, windsurf, dev tools)
 - [ ] add ai_tools role (claude-desktop, gemini-cli, mcp-commander)
 - [ ] add virtualization role (enhanced libvirt, qemu setup)

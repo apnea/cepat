@@ -1,5 +1,11 @@
 ---
 # GNOME installation for Arch Linux/CachyOS
+- name: Check if GNOME is already installed
+  ansible.builtin.command: pacman -Q gnome-shell
+  register: desktop_gnome_check
+  changed_when: false
+  failed_when: false
+
 - name: Install GNOME Desktop
   community.general.pacman:
     name:
@@ -8,6 +14,7 @@
       - gnome-shell-extensions
     state: present
   become: true
+  when: desktop_gnome_check.rc != 0
 
 - name: Install GNOME Extensions support
   community.general.pacman:
@@ -16,6 +23,7 @@
       - gnome-browser-connector
     state: present
   become: true
+  when: desktop_gnome_check.rc != 0
 
 - name: Install theme dependencies
   community.general.pacman:

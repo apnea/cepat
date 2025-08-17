@@ -3,6 +3,15 @@
 - name: Include distro-specific GNOME installation
   ansible.builtin.include_tasks: "{{ distro_name }}.yml"
 
+- name: Show GNOME installation status
+  ansible.builtin.debug:
+    msg: >-
+      {%- if desktop_gnome_check.rc == 0 -%}
+        GNOME is already installed, skipping installation
+      {%- else -%}
+        GNOME installation completed
+      {%- endif -%}
+
 - name: Install fonts
   ansible.builtin.include_tasks: fonts.yml
 

@@ -1,14 +1,21 @@
 ---
-# GNOME installation for Debian/Ubuntu
+# GNOME installation for Debian
+- name: Check if GNOME is already installed
+  ansible.builtin.command: dpkg -l gnome-shell
+  register: desktop_gnome_check
+  changed_when: false
+  failed_when: false
+
 - name: Install GNOME Desktop
   ansible.builtin.apt:
     name:
-      - vanilla-gnome-desktop
-      - vanilla-gnome-default-settings
+      - gnome-core
       - gnome-tweaks
+      - task-gnome-desktop
     state: present
     update_cache: true
   become: true
+  when: desktop_gnome_check.rc != 0
 
 - name: Install GNOME Extensions support
   ansible.builtin.apt:
@@ -20,6 +27,7 @@
       - gnome-shell-extension-gsconnect
     state: present
   become: true
+  when: desktop_gnome_check.rc != 0
 
 - name: Install theme dependencies
   ansible.builtin.apt:
