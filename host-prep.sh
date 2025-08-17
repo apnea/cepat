@@ -12,13 +12,13 @@ PROXY="http://192.168.68.127:3128"
 PLAYBOOK="https://github.com/apnea/cepat.git"
 USEPROXY=true
 
-echo "Detected host as $HOST and version as $VERSION_CODENAME"
-echo "Proxy set to $PROXY"
+printf "Detected host as $HOST and version as $VERSION_CODENAME"
+printf "Proxy set to $PROXY"
 
-echo "\nTesting proxy..."
-echo "IP address: " && curl -x $PROXY ip.me
+printf "\nTesting proxy...\n"
+printf "IP address: " && curl -x "$PROXY" ip.me
 
-echo "\nPreparing host for Ansible playbook execution..."
+printf "\nPreparing host for Ansible playbook execution...\n"
 
 case "$HOST" in
     ubuntu)
@@ -28,33 +28,33 @@ case "$HOST" in
         sudo apt install -y ansible ansible-lint
         sudo apt install -y python3-pip
         if [ "$USEPROXY" = true ]; then
-            echo "Acquire::http::Proxy $PROXY;" |sudo tee /etc/apt/apt.conf.d/80proxy
-            echo "http_proxy $PROXY;" | sudo tee /etc/environment
+            printf "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
+            printf "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
         fi
         ;;
     debian)
         sudo apt update
         sudo apt install -y ansible ansible-lint
         if [ "$USEPROXY" = true ]; then
-            echo "Acquire::http::Proxy $PROXY;" |sudo tee /etc/apt/apt.conf.d/80proxy
-            echo "http_proxy $PROXY;" | sudo tee /etc/environment
+            printf "Acquire::http::Proxy \"$PROXY\";" | sudo tee /etc/apt/apt.conf.d/80proxy
+            printf "http_proxy=\"$PROXY\"" | sudo tee -a /etc/environment
         fi
         ;;
     arch)
         sudo pacman -Sy ansible ansible-lint
         ;;
     *)
-        echo "Unsupported host: $HOST"
+        printf "Unsupported host: $HOST"
         exit 1
         ;;
 esac
 
-echo "\n Ansible version is $(ansible --version)"
+printf "\nAnsible version is: %s\n" "$(ansible --version)"
 
-mkdir ~/src
+mkdir ~/src || exit 1
 
-echo "\nCloning playbook repository..."
+printf "\nCloning playbook repository...\n"
 git clone $PLAYBOOK ~/src/cepat
 cd ~/src/cepat || exit 1
-echo "\Done! You can now run the playbook with:"
-echo "ansible-playbook -i inventory site.yml --limit local --ask-become-pass"
+printf "\nDone! You can now run the playbook with:\n"
+printf "ansible-playbook -i inventory site.yml --limit local --ask-become-pass"
