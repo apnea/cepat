@@ -5,6 +5,8 @@
   environment:
     http_proxy: http://192.168.68.127:3128
     https_proxy: http://192.168.68.127:3128
+  gather_facts: true
+
   vars_files:
     - vars/common_packages.yml
     - vars/common_flatpaks.yml
