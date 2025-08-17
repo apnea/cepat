@@ -1,7 +1,7 @@
 ---
 # Main entry point for containerization role
 - name: Include distro-specific Docker installation
-  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+  ansible.builtin.include_tasks: "{{ distro_name }}.yml"
 
 - name: Configure Docker post-install settings
   ansible.builtin.include_tasks: post_install.yml

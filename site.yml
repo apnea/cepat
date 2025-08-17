@@ -22,12 +22,30 @@
       ansible.builtin.debug:
         msg: "my_user: {{ my_user }}"
 
-    - name: Debug OS family
+    - name: Set distribution fact for consistent naming
+      ansible.builtin.set_fact:
+        distro_name: >-
+          {%- set ubuntu_distros = ['Ubuntu', 'Pop!_OS', 'Linux Mint', 'elementary OS'] -%}
+          {%- set arch_distros = ['CachyOS', 'Manjaro', 'EndeavourOS'] -%}
+          {%- if ansible_distribution in ubuntu_distros or 'ubuntu' in (ansible_distribution_like | default('')) | lower -%}
+            ubuntu
+          {%- elif ansible_distribution == 'Debian' -%}
+            debian
+          {%- elif ansible_os_family == 'Archlinux' or ansible_distribution in arch_distros -%}
+            archlinux
+          {%- else -%}
+            {{ ansible_os_family | lower }}
+          {%- endif -%}
+
+    - name: Debug distribution detection
       ansible.builtin.debug:
-        msg: "ansible_os_family: '{{ ansible_os_family }}', lowercase: '{{ ansible_os_family | lower }}'"
+        msg: |
+          ansible_distribution: '{{ ansible_distribution }}'
+          ansible_os_family: '{{ ansible_os_family }}'
+          distro_name: '{{ distro_name }}'
 
     - name: Load OS-specific variables
-      ansible.builtin.include_vars: "vars/{{ ansible_os_family | lower }}.yml"
+      ansible.builtin.include_vars: "vars/{{ distro_name }}.yml"
 
     - name: Disk usage at start
       ansible.builtin.command: df -h /

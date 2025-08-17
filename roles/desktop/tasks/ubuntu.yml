@@ -1,0 +1,53 @@
+---
+# GNOME installation for Debian/Ubuntu
+- name: Install GNOME Desktop
+  ansible.builtin.apt:
+    name:
+      - vanilla-gnome-desktop
+      - vanilla-gnome-default-settings
+      - gnome-tweaks
+    state: present
+    update_cache: true
+  become: true
+
+- name: Install GNOME Extensions support
+  ansible.builtin.apt:
+    name:
+      - gnome-shell-extensions
+      - chrome-gnome-shell
+      - gnome-shell-extension-manager
+      - gnome-shell-extension-appindicator
+      - gnome-shell-extension-gsconnect
+    state: present
+  become: true
+
+- name: Install theme dependencies
+  ansible.builtin.apt:
+    name:
+      - gtk2-engines-murrine
+      - gtk2-engines-pixbuf
+      - sassc
+      - meson
+      - ninja-build
+      - libglib2.0-dev-bin
+      - libxml2-utils
+      - cairo-dock
+    state: present
+  become: true
+
+- name: Enable GDM3 display manager
+  ansible.builtin.systemd:
+    name: gdm3
+    enabled: true
+  become: true
+
+- name: Set graphical target as default
+  ansible.builtin.systemd:
+    name: graphical.target
+    enabled: true
+  become: true
+
+- name: Set default target to graphical
+  ansible.builtin.command: systemctl set-default graphical.target
+  become: true
+  changed_when: false

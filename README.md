@@ -18,6 +18,16 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] remove snap
 - [x] flatpak + apps
 - [x] gnome setup with themes, fonts, extensions for Debian/Ubuntu
+- [ ] refactor detection to distinguish Ubuntu vs Debian vs Arch
+- [ ] split vars/debian.yml into separate ubuntu.yml and debian.yml
+- [ ] refactor containerization role for Ubuntu/Debian/Arch differences
+- [ ] refactor package_management role for distro-specific handling
+- [ ] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
+- [ ] add development role (vscode, codium, windsurf, dev tools)
+- [ ] add ai_tools role (claude-desktop, gemini-cli, mcp-commander)
+- [ ] add virtualization role (enhanced libvirt, qemu setup)
+- [ ] test on Ubuntu 22.04/24.04, Debian 12/13, Arch/CachyOS
+- [ ] add nvidia driver and cuda support detection/installation
 - [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
 - [ ] install vscode and assorted junk, codium and windsurf
 - [ ] claude-desktop for linux

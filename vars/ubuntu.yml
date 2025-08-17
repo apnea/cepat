@@ -1,4 +1,4 @@
-# Debian specific variables
+# Ubuntu specific variables
 package_manager: apt
 package_update_cmd: "apt update"
 package_install_cmd: "apt install -y"
@@ -12,5 +12,5 @@ distro_packages:
   - lsb-release
   - python3-pip
   - qemu-system
-  - firmware-linux-nonfree  # Debian-specific
-  - contrib  # Enable contrib repos
+  - ubuntu-restricted-extras  # Ubuntu-specific
+
