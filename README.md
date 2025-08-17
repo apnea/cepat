@@ -1,6 +1,6 @@
 # Ansible Workstation Setup
 
-Goal:       Multi-distro Linux workstation configuration using Ansible with minimum required complexity to get the job done. It's like a pain equation: what is worse - setting all this shit up in ansible or hacking around in your new base install to get to where you want to be... At this point, I'm not sure...
+Goal:       Multi-distro Linux workstation configuration using Ansible
 
 ## Tasks
 
@@ -23,11 +23,11 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [x] refactor containerization role for Ubuntu/Debian/Arch differences
 - [x] refactor package_management role for distro-specific handling
 - [x] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
+- [ ] add nvidia driver and cuda support detection/installation
 - [ ] add development role (vscode, codium, windsurf, dev tools)
 - [ ] add ai_tools role (claude-desktop, gemini-cli, mcp-commander)
 - [ ] add virtualization role (enhanced libvirt, qemu setup)
 - [ ] test on Ubuntu 22.04/24.04, Debian 12/13, Arch/CachyOS
-- [ ] add nvidia driver and cuda support detection/installation
 - [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
 - [ ] install vscode and assorted junk, codium and windsurf
 - [ ] claude-desktop for linux
@@ -35,7 +35,6 @@ Goal:       Multi-distro Linux workstation configuration using Ansible with mini
 - [ ] npm install -g @google/gemini-cli
 - [ ] download/build the common dev containers
 - [ ] figure out what desktop support the script should provide (display/window manager/etc) - gnome and qtile?
-- [ ] figure out if/how the script should handle nvidia driver and cuda support (viz ubuntu and cachyos)
 
 ## Usage notes
 
