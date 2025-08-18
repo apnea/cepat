@@ -23,7 +23,8 @@ Goal:       Multi-distro Linux workstation configuration using Ansible
 - [x] refactor containerization role for Ubuntu/Debian/Arch differences
 - [x] refactor package_management role for distro-specific handling
 - [x] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
-- [x] test on Ubuntu Server 24.04, Debian 13, CachyOS -> success!
+- [x] test on Ubuntu Server 24.04, Debian 13, CachyOS -> partial success!
+- [ ] fix dot files mechanism
 - [ ] add nvidia driver and cuda support detection/installation
 - [ ] add development role (vscode, codium, windsurf, dev tools)
 - [ ] add ai_tools role (claude-desktop, gemini-cli, mcp-commander)
