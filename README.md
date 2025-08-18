@@ -2,6 +2,19 @@
 
 Goal:       Multi-distro Linux workstation configuration using Ansible
 
+## Status
+
+- At this point in time the script runs without failing on Ubuntu Server 24.04, Debian 13, CachyOS (all tested in vm)
+- Test experience:
+    - Ubuntu Server: very clunky on 25.04 with random segfaults of fairly innocent processes (almost every session). Better on 24.04. vanilla-gnome package still has some ubuntu crap in it. Even desnappified, apt install muscle memory can get tripped up and needs flatpak. Remains to be seen how much value Ubuntu's good integration with nVidia and extensive security options really add. Conclusion: Ubuntu continues to move away from the central Linux/GNU philosophy for the desktop user
+    - Debian 13: works very smoothly for this type of approach. As expected.
+    - CachyOS: highly configured out of the box, and very well so. Some setups much simpler, since Arch and AUR provide many packages. Pacman contibuted to fastest install times. Very pleasant first time Arch experience. Configuring it seems simpler than Debian.
+- My current dotfiles approach is destructive and Debian centric. It works fine on bare Debian or Ubuntu installs, but does not work well on an already highly configured offering like CachyOS. An options would be to make dotfiles setup incremental and conditional, but this is hard to do idempotently.
+- Conclusions:
+    - Ubuntu a big disappointment, CachyOS a beast
+    - Nvidia setups not portable and change frequency is greater than merrits automation here. Latter also for most AI/LLM stuff.
+    - Automate commonly used container setup with a flexible backup/restore strategy
+
 ## Tasks
 
 - [x] basic ubuntu package installs
@@ -25,16 +38,6 @@ Goal:       Multi-distro Linux workstation configuration using Ansible
 - [x] refactor desktop role for Ubuntu/Debian/Arch GNOME differences
 - [x] test on Ubuntu Server 24.04, Debian 13, CachyOS -> partial success!
 - [ ] fix dot files mechanism
-- [ ] add nvidia driver and cuda support detection/installation
-- [ ] add development role (vscode, codium, windsurf, dev tools)
-- [ ] add ai_tools role (claude-desktop, gemini-cli, mcp-commander)
-- [ ] add virtualization role (enhanced libvirt, qemu setup)
-- [ ] install dockge and the commonly used dockers, such as beszel, dozzle, ollama, webui, walkietalkie, etc
-- [ ] install vscode and assorted junk, codium and windsurf
-- [ ] claude-desktop for linux
-- [ ] mcp commander
-- [ ] npm install -g @google/gemini-cli
-- [ ] download/build the common dev containers
 
 ## Usage notes
 
