@@ -42,11 +42,23 @@
 - name: Set font preferences
   community.general.dconf:
     key: "/org/gnome/desktop/interface/font-name"
-    value: "'Roboto 11'"
+    value: "'Fira Sans 10'"
   become: false
 
 - name: Set monospace font
   community.general.dconf:
     key: "/org/gnome/desktop/interface/monospace-font-name"
-    value: "'JetBrains Mono 10'"
+    value: "'FiraCode Nerd Font 10'"
+  become: false
+
+- name: Set document font
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/document-font-name"
+    value: "'FiraCode Nerd Font 10'"
+  become: false
+
+- name: Set font scaling factor
+  community.general.dconf:
+    key: "/org/gnome/desktop/interface/text-scaling-factor"
+    value: "'1.25'"
   become: false
