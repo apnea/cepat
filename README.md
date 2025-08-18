@@ -41,45 +41,52 @@ Goal:       Multi-distro Linux workstation configuration using Ansible
 
 ## Usage notes
 
-To test this with local VMs using hostnames via qemu/libvirt for ssh and ansible requires:
+- Test with local VMs using hostnames via qemu/libvirt for ssh and ansible:
 
-1. install libnss-libvirt and enable dns resolution of vms under libvirt by appending libvirt to /etc/resolv.conf
+    HOST: install libnss-libvirt and enable dns resolution of vms under libvirt by appending libvirt to /etc/resolv.conf
 
+    ```
+        sudo apt install libnss-libvirt
+        sudo sed -i '/^hosts:/ s/$/ libvirt/' /etc/nsswitch.conf
+    ```
 
-```
-    sudo apt install libnss-libvirt
-    sudo sed -i '/^hosts:/ s/$/ libvirt/' /etc/nsswitch.conf
-```
+    CLIENT: set hostname in client
 
-2. set hostname in client
+    Note: You can also do all this just using ip addresses
 
-You can also do all this just using ip addresses.
+    - test-vm.sh will clone a vm, start it and attempt to connect to it via hostname, run the script asking for a sudo password, and then destroy the vm
 
-Usage: ./test-vm.sh will create a vm, attempt to connect to it via hostname, run the script asking for a sudo password, and then destroy the vm.
-
-Testing note: Run a squid to cache the apt and other http requests originating from the script:
-
-vm: ```echo 'Acquire::http::Proxy "http://<host-ip>:3128";' | sudo tee /etc/apt/apt.conf.d/80proxy``` and  ```http_proxy=http://<host-ip>:3128``` in /etc/environment
-
-host: ```virsh net-dumpxml default``` to find IP range for acl (also check squid access log if denied). Ensure big enough cache in squid.conf.
+- Look at host-prep.sh to configure apt/http proxy such as squid
+    host: ```virsh net-dumpxml default``` to find IP range for acl (also check squid access log if denied). Ensure big enough cache in squid.conf.
 
 ## End-state
 ```
 ├── site.yml                # Main playbook
 ├── inventory               # Hosts file
 ├── install.sh              # Run script
+├── host-prep.sh            # Host preparation script
+├── test-vm.sh              # VM testing script
+├── test.yml                # Test playbook
+├── ansible.cfg             # Ansible configuration
 ├── vars/                   # Variables
 │   ├── common_packages.yml
 │   ├── common_flatpaks.yml
-│   ├── debian.yml          # Debian/Ubuntu specific
+│   ├── debian.yml          # Debian specific
+│   ├── ubuntu.yml          # Ubuntu specific
 │   └── archlinux.yml       # Arch/CachyOS specific
-├── tasks/                  # Legacy task files (to be removed)
+├── pre_tasks/              # Pre-execution tasks
+│   ├── main.yml
+│   ├── debian.yml
+│   ├── ubuntu.yml
+│   └── archlinux.yml
+├── shell/                  # Shell scripts and documentation
 └── roles/                  # Feature-focused roles
-    ├── base/
+    ├── base/               # (empty)
     ├── containerization/   # Docker + container ecosystem
     │   └── tasks/
     │       ├── main.yml
     │       ├── debian.yml
+    │       ├── ubuntu.yml
     │       ├── archlinux.yml
     │       ├── post_install.yml
     │       └── log_rotation.yml
@@ -87,9 +94,21 @@ host: ```virsh net-dumpxml default``` to find IP range for acl (also check squid
     │   └── tasks/
     │       ├── main.yml
     │       ├── debian.yml
+    │       ├── ubuntu.yml
     │       ├── archlinux.yml
     │       └── flatpak.yml
-    ├── development/
-    ├── desktop/
-    └── dotfiles/
+    ├── development/        # (empty)
+    ├── desktop/            # GNOME desktop configuration
+    │   └── tasks/
+    │       ├── main.yml
+    │       ├── debian.yml
+    │       ├── ubuntu.yml
+    │       ├── archlinux.yml
+    │       ├── configuration.yml
+    │       ├── extensions.yml
+    │       ├── fonts.yml
+    │       └── themes.yml
+    └── dotfiles/           # Dotfiles management
+        └── tasks/
+            └── main.yml
 ```
