@@ -74,3 +74,31 @@
   become_user: "{{ my_user }}"
   args:
     creates: /usr/local/bin/starship
+
+- name: Initialize Starship in .bashrc
+  ansible.builtin.lineinfile:
+    path: "/home/{{ my_user }}/.bashrc"
+    line: 'eval "$(starship init bash)"'
+    regexp: '^eval "\$\(starship init bash\)"'
+    create: true
+    mode: '0644'
+    owner: "{{ my_user }}"
+    group: "{{ my_user }}"
+
+- name: Ensure ~/.config/fish directory exists
+  ansible.builtin.file:
+    path: "/home/{{ my_user }}/.config/fish"
+    state: directory
+    mode: '0755'
+    owner: "{{ my_user }}"
+    group: "{{ my_user }}"
+
+- name: Initialize Starship in fish config
+  ansible.builtin.lineinfile:
+    path: "/home/{{ my_user }}/.config/fish/config.fish"
+    line: 'starship init fish | source'
+    regexp: '^starship init fish \| source'
+    create: true
+    mode: '0644'
+    owner: "{{ my_user }}"
+    group: "{{ my_user }}"
